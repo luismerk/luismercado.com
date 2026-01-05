@@ -7,7 +7,7 @@ workers ENV.fetch("WEB_CONCURRENCY", 1)
 preload_app!
 
 # THIS IS THE IMPORTANT PART
-port ENV.fetch("PORT", 3000)
+port ENV.fetch("PORT", 8080)
 environment ENV.fetch("RAILS_ENV", "production")
 
 plugin :tmp_restart
