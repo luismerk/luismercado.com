@@ -1,6 +1,6 @@
 #!/bin/bash
-# Ensure bundler installs gems before starting app
-echo "Running bundle install..."
-bundle install --deployment --without development test
+set -e
 
-echo "Bundle install completed."
+# Install gems in deployment mode
+bundle config set deployment 'true'
+bundle install --without development test --jobs 4 --retry 3
