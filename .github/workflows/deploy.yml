@@ -1,0 +1,75 @@
+name: Deploy to Elastic Beanstalk
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # --------------------
+      # Ruby
+      # --------------------
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.3.10
+          bundler-cache: true
+
+      # --------------------
+      # Node
+      # --------------------
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install JS dependencies
+        run: npm install
+
+      # --------------------
+      # Build assets
+      # --------------------
+      - name: Build JS
+        run: |
+          npx esbuild app/javascript/application.jsx \
+            --bundle \
+            --minify \
+            --outdir=public/assets
+
+      - name: Build CSS
+        run: |
+          npx postcss app/javascript/styles/application.css \
+            --output public/assets/application.css
+
+      # --------------------
+      # Package app
+      # --------------------
+      - name: Zip application
+        run: |
+          zip -r deploy.zip . \
+            -x "*.git*" \
+            -x "log/*" \
+            -x "tmp/*" \
+            -x "node_modules/*"
+
+      # --------------------
+      # Deploy to EB
+      # --------------------
+      - name: Deploy to Elastic Beanstalk
+        uses: einaregilsson/beanstalk-deploy@v21
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          region: ${{ secrets.AWS_REGION }}
+          application_name: ${{ secrets.EB_APPLICATION_NAME }}
+          environment_name: ${{ secrets.EB_ENVIRONMENT_NAME }}
+          version_label: github-${{ github.sha }}
+          deployment_package: deploy.zip
