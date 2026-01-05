@@ -1,5 +1,3 @@
-# config/puma.rb
-
 # Bind to EB's $PORT (Amazon Linux 2023 expects TCP)
 port ENV.fetch("PORT") { 3000 }
 
