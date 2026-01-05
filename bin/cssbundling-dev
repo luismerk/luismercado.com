@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+set -e
+
+# Rails 8 default: watch CSS/PostCSS changes
+exec node_modules/.bin/postcss app/javascript/styles/application.css \
+  --output public/assets/application.css \
+  --watch

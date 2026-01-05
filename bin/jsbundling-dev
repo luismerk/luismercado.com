@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+set -e
+
+# Rails 8 default: watch JS changes
+exec node_modules/.bin/esbuild app/javascript/application.jsx \
+  --bundle \
+  --sourcemap \
+  --outdir=public/assets \
+  --watch

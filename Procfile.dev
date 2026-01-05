@@ -1,0 +1,4 @@
+web: bin/rails server
+js: bin/jsbundling-dev
+css: bin/cssbundling-dev
+
