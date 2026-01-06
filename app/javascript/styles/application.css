@@ -108,17 +108,58 @@ html, body {
   color: #374151;
 }
 
-/* ---------------- Mobile ---------------- */
+/* ---------- Hamburger Button ---------- */
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: #111827;
+  margin: 5px 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* ---------- Mobile Nav ---------- */
 
 @media (max-width: 768px) {
-  .nav-container {
-    flex-direction: column;
-    align-items: flex-start;
+  .nav-toggle {
+    display: block;
   }
 
   .nav-links {
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+
     flex-direction: column;
-    gap: 1rem;
-    margin-top: 0.75rem;
+    align-items: flex-start;
+    padding: 1.25rem 2rem;
+    gap: 1.25rem;
+
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+
+    transition:
+      max-height 0.35s ease,
+      opacity 0.25s ease;
+  }
+
+  .nav-links.open {
+    max-height: 400px;
+    opacity: 1;
+    pointer-events: auto;
   }
 }
