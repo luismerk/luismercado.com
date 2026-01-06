@@ -20,6 +20,11 @@ html, body {
   border-bottom: 1px solid #e5e7eb;
 }
 
+/* Scroll shadow */
+.site-header.scrolled {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
 /* Single horizontal flex row */
 .nav-container {
   max-width: 1200px;
@@ -127,8 +132,20 @@ html, body {
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-/* ---------- Mobile Nav ---------- */
+/* Hamburger animation */
+.nav-toggle.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
 
+.nav-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ---------- Mobile Nav ---------- */
 @media (max-width: 768px) {
   .nav-toggle {
     display: block;
@@ -157,6 +174,10 @@ html, body {
       opacity 0.25s ease;
   }
 
+  .nav-links a {
+    font-size: 1.1rem;
+  }
+  
   .nav-links.open {
     max-height: 400px;
     opacity: 1;

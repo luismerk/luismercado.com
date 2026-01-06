@@ -1,31 +1,56 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 
 export default function Navigation() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  // Close on ESC
+  useEffect(() => {
+    const onKey = (e) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
+  // Shadow on scroll
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const closeMenu = () => setOpen(false);
 
   return (
-    <header className='site-header'>
-      <nav className='nav-container'>
-        <div className='nav-brand'>Luis Mercado</div>
+    <header className={`site-header ${scrolled ? "scrolled" : ""}`}>
+      <nav className="nav-container">
+        <div className="nav-brand">Luis Mercado</div>
 
         <button
-          className='nav-toggle'
-          onClick={() => setOpen(!open)}
-          aria-label='Toggle navigation'
+          className={`nav-toggle ${open ? "open" : ""}`}
+          aria-label="Toggle navigation"
           aria-expanded={open}
+          onClick={() => setOpen(!open)}
         >
-          <span/>
-          <span/>
-          <span/>
+          <span />
+          <span />
+          <span />
         </button>
 
         <ul className={`nav-links ${open ? "open" : ""}`}>
-          <li><NavLink to='/'>Home</NavLink></li>
-          <li><NavLink to='/drum-and-bass'>Drum & Bass</NavLink></li>
-          <li><NavLink to='/software-engineering'>Software Engineering</NavLink></li>
-          <li><NavLink to='/wrestling'>Wrestling</NavLink></li>
-          <li><NavLink to='/physics'>Physics</NavLink></li>
+          {[
+            { to: "/", label: "Home" },
+            { to: "/drum-and-bass", label: "Drum & Bass" },
+            { to: "/software-engineering", label: "Software" },
+            { to: "/wrestling", label: "Wrestling" },
+            { to: "/physics", label: "Physics" },
+          ].map(({ to, label }) => (
+            <li key={label}>
+              <NavLink to={to} onClick={closeMenu}>
+                {label}
+              </NavLink>
+            </li>
+          ))}
         </ul>
       </nav>
     </header>
