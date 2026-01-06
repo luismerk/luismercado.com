@@ -1,84 +1,124 @@
-/* --- Header / Nav --- */
-header {
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #111827;
+  background: #f9fafb;
+}
+
+/* ---------------- Header ---------------- */
+
+.site-header {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background-color: #ffffff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  padding: 0.75rem 2rem;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
 }
 
-/* Flex container for nav items */
-nav {
+/* Single horizontal flex row */
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.75rem 2rem;
+
   display: flex;
-  justify-content: space-between; /* Logo left, links right */
-  background-color: rgb(120, 191, 248);
+  justify-content: space-between;
   align-items: center;
 }
 
-/* Logo / site name */
-nav .logo {
+/* Brand */
+.nav-brand {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #1d4ed8; /* professional blue */
+  color: #1d4ed8;
+  white-space: nowrap;
 }
 
-/* Nav links container */
-nav ul {
+/* Links */
+.nav-links {
   list-style: none;
   display: flex;
-  gap: 2rem; /* space between nav items */
+  align-items: center;
+  gap: 1.75rem;
   margin: 0;
   padding: 0;
 }
 
-/* Individual links */
-nav ul li a {
-  display: inline-block;
+.nav-links a {
   position: relative;
   font-weight: 500;
-  color: #374151; /* dark gray */
   text-decoration: none;
+  color: #374151;
   padding: 0.25rem 0;
-  transition: color 0.3s ease;
+  transition: color 0.25s ease;
 }
 
-/* Hover underline effect */
-nav ul li a::after {
-  content: '';
-  display: block;
-  height: 2px;
-  width: 0%;
-  background: #1d4ed8;
-  transition: width 0.3s ease;
+/* Hover underline animation */
+.nav-links a::after {
+  content: "";
   position: absolute;
-  bottom: -2px;
   left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background-color: #1d4ed8;
+  transition: width 0.25s ease;
 }
 
-nav ul li a:hover {
+.nav-links a:hover {
   color: #1d4ed8;
 }
 
-nav ul li a:hover::after {
+.nav-links a:hover::after {
   width: 100%;
 }
 
-/* Responsive adjustments */
+/* Active link */
+.nav-links a.active {
+  color: #1d4ed8;
+  font-weight: 600;
+}
+
+.nav-links a.active::after {
+  width: 100%;
+}
+
+/* ---------------- Main Content ---------------- */
+
+.content {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+.home h1 {
+  font-size: 2.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.home p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
+  color: #374151;
+}
+
+/* ---------------- Mobile ---------------- */
+
 @media (max-width: 768px) {
-  nav {
+  .nav-container {
     flex-direction: column;
     align-items: flex-start;
   }
 
-  nav ul {
+  .nav-links {
     flex-direction: column;
-    width: 100%;
     gap: 1rem;
-    margin-top: 0.5rem;
-  }
-
-  nav ul li a::after {
-    bottom: 0; /* keeps underline correct in vertical layout */
+    margin-top: 0.75rem;
   }
 }
