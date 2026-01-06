@@ -1,3 +1,5 @@
+bind "unix:///var/run/puma/my_app.sock"
+
 max_threads_count = ENV.fetch("RAILS_MAX_THREADS", 3)
 min_threads_count = max_threads_count
 threads min_threads_count, max_threads_count
