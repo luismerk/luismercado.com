@@ -55,7 +55,7 @@ Rails.application.configure do
   #   "luismercadocom-env.eba-n3z9f42r.us-east-1.elasticbeanstalk.com", # Allow requests from Elastic Beanstalk default domain
   #   "luismercado.com",     # Allow requests from luismercado.com
   #   /.*\.luismercado\.com/ # Allow requests from subdomains like `www.luismercado.com`
-  ]
+  #]
   #
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
