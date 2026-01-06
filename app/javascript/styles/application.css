@@ -1,6 +1,84 @@
-* { box-sizing: border-box; }
-body { margin: 0; font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif; background: #0f0f0f; color: #f5f5f5; }
-.nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background: #1a1a1a; }
-.nav-links { display: flex; gap: 1.5rem; list-style: none; padding: 0; margin: 0; }
-.content { max-width: 960px; padding: 2rem; margin: auto; }
-@media (max-width: 600px) { .nav-links { flex-direction: column; gap: 0.75rem; } }
+/* --- Header / Nav --- */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 0.75rem 2rem;
+}
+
+/* Flex container for nav items */
+nav {
+  display: flex;
+  justify-content: space-between; /* Logo left, links right */
+  background-color: rgb(120, 191, 248);
+  align-items: center;
+}
+
+/* Logo / site name */
+nav .logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1d4ed8; /* professional blue */
+}
+
+/* Nav links container */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem; /* space between nav items */
+  margin: 0;
+  padding: 0;
+}
+
+/* Individual links */
+nav ul li a {
+  display: inline-block;
+  position: relative;
+  font-weight: 500;
+  color: #374151; /* dark gray */
+  text-decoration: none;
+  padding: 0.25rem 0;
+  transition: color 0.3s ease;
+}
+
+/* Hover underline effect */
+nav ul li a::after {
+  content: '';
+  display: block;
+  height: 2px;
+  width: 0%;
+  background: #1d4ed8;
+  transition: width 0.3s ease;
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+}
+
+nav ul li a:hover {
+  color: #1d4ed8;
+}
+
+nav ul li a:hover::after {
+  width: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav ul {
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+    margin-top: 0.5rem;
+  }
+
+  nav ul li a::after {
+    bottom: 0; /* keeps underline correct in vertical layout */
+  }
+}
