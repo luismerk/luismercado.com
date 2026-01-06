@@ -51,10 +51,10 @@ Rails.application.configure do
   config.i18n.fallbacks = true
 
   # Enable DNS rebinding protection and other `Host` header attacks.
-  config.hosts = [
-    "luismercadocom-env.eba-n3z9f42r.us-east-1.elasticbeanstalk.com/", # Allow requests from Elastic Beanstalk default domain
-    "luismercado.com",     # Allow requests from luismercado.com
-    /.*\.luismercado\.com/ # Allow requests from subdomains like `www.luismercado.com`
+  # config.hosts = [
+  #   "luismercadocom-env.eba-n3z9f42r.us-east-1.elasticbeanstalk.com", # Allow requests from Elastic Beanstalk default domain
+  #   "luismercado.com",     # Allow requests from luismercado.com
+  #   /.*\.luismercado\.com/ # Allow requests from subdomains like `www.luismercado.com`
   ]
   #
   # Skip DNS rebinding protection for the default health check endpoint.
