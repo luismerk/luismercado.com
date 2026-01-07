@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 export default function Navigation() {
@@ -20,7 +20,7 @@ export default function Navigation() {
   }, []);
 
   const closeMenu = () => setOpen(false);
-
+  
   return (
     <header className={`site-header ${scrolled ? "scrolled" : ""}`}>
       <nav className="nav-container">

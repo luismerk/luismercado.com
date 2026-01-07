@@ -1,0 +1,14 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true,       // Fix all fixable issues on save
+    "source.fixAll.eslint": true // Specifically run ESLint fixes
+  },
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "editor.formatOnSave": true,     // Optional: auto-format with Prettier
+  "prettier.enableDebugLogs": false
+}
