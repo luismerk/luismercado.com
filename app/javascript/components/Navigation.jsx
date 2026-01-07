@@ -25,7 +25,7 @@ export default function Navigation() {
   return (
     <header className={`site-header ${scrolled ? "scrolled" : ""}`}>
       <nav className="nav-container">
-        <div className="nav-brand">Luis Mercado</div>
+        <div className="nav-brand">Let's Fucking GOO</div>
 
         <button
           className={`nav-toggle ${open ? "open" : ""}`}
