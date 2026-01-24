@@ -1,4 +1,5 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
+set -e
 
 if gem list --no-installed --exact --silent foreman; then
   echo "Installing foreman..."
@@ -8,4 +9,5 @@ fi
 # Default to port 3000 if not specified
 # export PORT="${PORT:-3000}"
 
+echo "Starting Rails + Vite"
 exec foreman start -f Procfile.dev
