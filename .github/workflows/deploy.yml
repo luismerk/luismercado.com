@@ -37,17 +37,9 @@ jobs:
       # --------------------
       # Build assets
       # --------------------
-      - name: Build JS
+      - name: Build Vite assets
         run: |
-          npx esbuild app/javascript/application.jsx \
-            --bundle \
-            --minify \
-            --outdir=public/assets
-
-      - name: Build CSS
-        run: |
-          npx postcss app/javascript/styles/application.css \
-            --output public/assets/application.css
+          bin/vite build
 
       # --------------------
       # Package app
