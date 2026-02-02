@@ -21,6 +21,6 @@ npm install
 
 gem install foreman
 
-bin/dev
+npm run dev
 
 ```
